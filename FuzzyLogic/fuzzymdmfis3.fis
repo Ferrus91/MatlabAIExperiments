@@ -1,0 +1,69 @@
+[System]
+Name='fuzzymdmfis3'
+Type='mamdani'
+Version=2.0
+NumInputs=6
+NumOutputs=1
+NumRules=4
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='name delta'
+Range=[0 3]
+NumMFs=2
+MF1='match':'sigmf',[3.75 2]
+MF2='nomatch':'sigmf',[-3.75 2]
+
+[Input2]
+Name='address delta'
+Range=[0 5]
+NumMFs=2
+MF1='match':'sigmf',[1 3]
+MF2='nomatch':'sigmf',[-1 3]
+
+[Input3]
+Name='NI Edit distance'
+Range=[0 9]
+NumMFs=2
+MF1='match':'sigmf',[20 2]
+MF2='nomatch':'sigmf',[-20 2]
+
+[Input4]
+Name='Home Phone Number Edit distance'
+Range=[0 11]
+NumMFs=2
+MF1='match':'sigmf',[20 2]
+MF2='nomatch':'sigmf',[-20 2]
+
+[Input5]
+Name='Geographical distance'
+Range=[0 1000]
+NumMFs=3
+MF1='identical':'sigmf',[3 1.5]
+MF2='moved':'gaussmf',[20 25]
+MF3='differntlocation':'sigmf',[-3 1.5]
+
+[Input6]
+Name='Gender'
+Range=[-1 1]
+NumMFs=2
+MF1='match':'sigmf',[20 0]
+MF2='nomatch':'sigmf',[-20 0]
+
+[Output1]
+Name='Matching'
+Range=[0 1]
+NumMFs=3
+MF1='nomatch':'gaussmf',[0.25 0]
+MF2='datasteward':'gaussmf',[0.25 0.5]
+MF3='automatch':'gaussmf',[0.25 1]
+
+[Rules]
+1 1 1 0 0 0, 3 (1) : 1
+1 1 0 0 1 0, 3 (1) : 1
+1 1 0 0 0 1, 3 (1) : 1
+1 0 1 0 0 1, 3 (1) : 1

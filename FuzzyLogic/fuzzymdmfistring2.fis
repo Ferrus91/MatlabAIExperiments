@@ -1,0 +1,84 @@
+[System]
+Name='fuzzymdmfistring2'
+Type='mamdani'
+Version=2.0
+NumInputs=6
+NumOutputs=1
+NumRules=19
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='name delta'
+Range=[0 3]
+NumMFs=2
+MF1='nomatch':'trapmf',[1 1.5 3 3]
+MF2='match':'trimf',[0 0 2]
+
+[Input2]
+Name='address delta'
+Range=[0 5]
+NumMFs=2
+MF1='nomatch':'trapmf',[1.4 3.5 5 5]
+MF2='match':'trimf',[0 0 3.5]
+
+[Input3]
+Name='NI Edit distance'
+Range=[0 9]
+NumMFs=2
+MF1='nomatch':'trapmf',[1.35 4 9 9]
+MF2='match':'trimf',[0 0 5]
+
+[Input4]
+Name='Home Phone Number Edit distance'
+Range=[0 11]
+NumMFs=2
+MF1='nomatch':'trapmf',[1 3 11 11]
+MF2='match':'trimf',[0 0 3.9]
+
+[Input5]
+Name='Geographical distance'
+Range=[0 1000]
+NumMFs=3
+MF1='differentlocation':'trapmf',[25 25 1000 1000]
+MF2='moved':'trimf',[0 25 75]
+MF3='identical':'trimf',[0 0 50]
+
+[Input6]
+Name='Gender'
+Range=[-1 1]
+NumMFs=2
+MF1='match':'trapmf',[-0.2 0.2 1 1]
+MF2='nomatch':'trapmf',[-1 -1 0 0.2]
+
+[Output1]
+Name='Matching'
+Range=[0 1]
+NumMFs=3
+MF1='nomatch':'trimf',[0 0 0.1]
+MF2='datasteward':'trimf',[0 0.5 1]
+MF3='automatch':'trimf',[0.9 1 1]
+
+[Rules]
+2 2 2 0 0 1, 3 (1) : 1
+2 2 0 0 3 1, 3 (1) : 1
+2 2 0 0 0 1, 3 (1) : 1
+2 0 2 0 0 1, 3 (1) : 1
+2 1 1 0 0 0, 2 (1) : 1
+1 0 2 0 0 1, 2 (1) : 1
+1 2 0 2 0 1, 2 (1) : 1
+1 2 0 0 3 0, 2 (1) : 1
+0 1 2 0 0 1, 2 (1) : 1
+0 1 0 2 -1 0, 2 (1) : 1
+1 1 1 0 0 2, 1 (1) : 2
+0 1 0 1 0 0, 1 (1) : 1
+0 0 0 1 -3 2, 1 (1) : 1
+0 0 1 1 0 2, 1 (1) : 1
+0 1 0 0 -3 0, 1 (1) : 1
+1 2 2 0 3 0, 2 (1) : 1
+2 2 1 0 3 0, 2 (1) : 1
+2 0 0 0 0 2, 2 (1) : 1
+2 1 0 0 2 1, 2 (1) : 1
